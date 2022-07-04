@@ -1,0 +1,29 @@
+.top-rect-pagination {
+  display: flex;
+  flex-direction: column;
+}
+
+.top-rect-pagination .swiper-wrapper {
+  order: 2;
+}
+.top-rect-pagination .swiper-pagination {
+  order: 1;
+  position: relative;
+  bottom: auto;
+  left: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.top-rect-pagination .swiper-pagination-bullet {
+  width: 35px;
+  height: 3px;
+  border-radius: 0;
+  background: #fff;
+  opacity: 0.4;
+}
+
+.top-rect-pagination .swiper-pagination-bullet-active {
+  opacity: 1;
+}

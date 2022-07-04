@@ -1,0 +1,142 @@
+@tailwind base;
+@layer base {
+  /* Custom Fonts */
+  @font-face {
+    font-family: "BR Firma";
+    src: url("assets/fonts/BRFirma-RegularItalic.woff2") format("woff2"),
+      url("assets/fonts/BRFirma-RegularItalic.woff") format("woff");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "BR Firma";
+    src: url("assets/fonts/BRFirma-Regular.woff2") format("woff2"),
+      url("assets/fonts/BRFirma-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "BR Firma";
+    src: url("assets/fonts/BRFirma-SemiBold.woff2") format("woff2"),
+      url("assets/fonts/BRFirma-SemiBold.woff") format("woff");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  /* Accordion Class */
+  .form-control:focus {
+    box-shadow: none;
+  }
+  .form-control:focus ~ label {
+    @apply text-red-350;
+  }
+  .accordion-radio-group [type="radio"]:checked,
+  .accordion-radio-group [type="radio"]:not(:checked) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  .accordion-radio-group [type="radio"]:checked + label,
+  .accordion-radio-group [type="radio"]:not(:checked) + label {
+    position: relative;
+
+    cursor: pointer;
+    display: block;
+  }
+  .accordion-radio-group
+    [type="radio"]:checked
+    + label
+    .accordion-button:before,
+  .accordion-radio-group
+    [type="radio"]:not(:checked)
+    + label
+    .accordion-button:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 21px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+  }
+  .accordion-radio-group [type="radio"]:checked + label .accordion-button:after,
+  .accordion-radio-group
+    [type="radio"]:not(:checked)
+    + label
+    .accordion-button:after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 24px;
+    left: 3px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    @apply bg-red-350;
+  }
+  .accordion-radio-group
+    [type="radio"]:not(:checked)
+    + label
+    .accordion-button:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  .accordion-radio-group [type="radio"]:checked + label {
+    @apply border-red-300;
+  }
+
+  .accordion-radio-group
+    [type="radio"]:checked
+    + label
+    .accordion-button:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  .accordion-radio-group [type="radio"]:checked + label .accordion-button,
+  .accordion-radio-group [type="radio"]:not(:checked) + label .accordion-button,
+  .accordion-radio-group [type="radio"]:checked + label .accordion-collapse,
+  .accordion-radio-group
+    [type="radio"]:not(:checked)
+    + label
+    .accordion-collapse {
+    padding-left: 28px;
+  }
+  .accordion-radio-group .accordion-button:after {
+    background-image: none;
+  }
+
+  .accordion-radio-group .accordion-button:not(.collapsed) {
+    box-shadow: none;
+  }
+
+  .accordion-radio-group .accordion-item:not(:first-of-type) {
+    border-top: 1px;
+  }
+
+  /* Side Menu */
+  .open-menu .dashboard-menu {
+    @apply translate-x-0;
+  }
+  .open-menu .dashboard-content-area {
+    @apply translate-x-72;
+  }
+}
