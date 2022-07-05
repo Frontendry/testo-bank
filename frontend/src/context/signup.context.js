@@ -12,8 +12,10 @@ export const SignUpContextProvider = ({ children }) => {
     tel: "",
   });
 
+  const [error, setError] = useState("");
+
   return (
-    <SignUpContext.Provider value={{ formData, setFormData }}>
+    <SignUpContext.Provider value={{ formData, setFormData, error, setError }}>
       {children}
     </SignUpContext.Provider>
   );

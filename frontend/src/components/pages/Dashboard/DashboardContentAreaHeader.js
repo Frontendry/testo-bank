@@ -1,8 +1,20 @@
+import "tw-elements";
 import avatar from "../../../assets/images/smiling-black-woman.jpg";
 
+import { useNavigate } from "react-router-dom";
+
 const DashboardContentAreaHeader = () => {
+  // Set Navigation
+  const navigate = useNavigate();
   const toggleMenu = () => {
     document.body.classList.toggle("open-menu");
+  };
+
+  const logOut = () => {
+    //remove token
+    localStorage.removeItem("user");
+
+    return navigate("/signin");
   };
 
   return (
@@ -24,9 +36,61 @@ const DashboardContentAreaHeader = () => {
           <i className="bi bi-bell-fill"></i>
         </span>
 
-        <figure className="ml-5">
-          <img src={avatar} alt="BN" className="w-12 h-12 rounded-full" />
-        </figure>
+        <div className="dropdown">
+          <button
+            type="button"
+            className="dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <figure className="ml-5">
+              <img src={avatar} alt="BN" className="w-12 h-12 rounded-full" />
+            </figure>
+          </button>
+
+          <ul
+            className="
+              dropdown-menu
+              w-48
+              absolute
+              hidden
+              bg-white
+              text-base
+              z-50
+              float-left
+              py-2
+              list-none
+              text-left
+              rounded-lg
+              shadow-xl
+              mt-1
+              m-0
+              bg-clip-padding
+              border-none
+            "
+            aria-labelledby="dropdownMenuButton2"
+          >
+            <li>
+              <button
+                type="button"
+                onClick={logOut}
+                className="dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-200"
+              >
+                <span>Logout</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </header>
   );

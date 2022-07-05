@@ -1,3 +1,4 @@
+import { useSignUpData } from "../../../context/signup.context";
 import FormStepDescription from "../../general-components/FormStepDescription";
 import AccordionRadioGroup from "./AccordionRadioGroup";
 
@@ -5,6 +6,7 @@ import SubmitForm from "./SubmitForm";
 import SignUpContentAreaHeader from "./SignUpContentAreaHeader";
 
 const SignUpFormStep2 = () => {
+  const { error } = useSignUpData();
   return (
     <>
       <SignUpContentAreaHeader
@@ -20,6 +22,17 @@ const SignUpFormStep2 = () => {
         />
 
         <AccordionRadioGroup />
+
+        {error ? (
+          <div
+            className="bg-red-100 rounded-lg py-5 px-6 mb-8 text-base text-red-700"
+            role="alert"
+          >
+            {error}
+          </div>
+        ) : (
+          ""
+        )}
 
         <SubmitForm />
       </div>

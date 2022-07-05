@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // Import Swiper React components for step change
@@ -16,10 +16,8 @@ import SignUpFormStep1 from "./SignUpFormStep1";
 import SignUpFormStep2 from "./SignUpFormStep2";
 
 const SignUpForm = () => {
-  const [error, setError] = useState("");
-
-  // Get current form data from useSignInData context
-  const { formData } = useSignUpData();
+  // Get current formData, setError from useSignUpData context
+  const { formData, setError } = useSignUpData();
 
   // Get setUser state from  useAuth context
   const { setUser, setToken } = useAuth();
@@ -56,16 +54,18 @@ const SignUpForm = () => {
       if (response.data && response.data.success === false) {
         //display error coming from server
 
-        return setError(response.data.msg);
+        return setError(response.data.message);
       }
 
       return setCurrentUser(response);
     } catch (error) {
       //display error originating from server / other sources
       console.log(error);
+
       if (error.response) {
-        return setError(error.response.data.msg);
+        return setError(error.response.data.message);
       }
+      //swiper.slidePrev();
       return setError("There has been an error.");
     }
   };

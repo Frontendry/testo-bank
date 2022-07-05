@@ -50,16 +50,17 @@ const SignInForm = () => {
       if (response.data && response.data.success === false) {
         //display error coming from server
 
-        return setError(response.data.msg);
+        return setError(response.data.message);
       }
 
       return setCurrentUser(response);
     } catch (error) {
       //display error originating from server / other sources
-      console.log(error);
+
       if (error.response) {
-        return setError(error.response.data.msg);
+        return setError(error.response.data.message);
       }
+
       return setError("There has been an error.");
     }
   };
@@ -82,7 +83,16 @@ const SignInForm = () => {
             subtitle="An account, with powerful, personalised tools
 all in one place."
           />
-
+          {error ? (
+            <div
+              className="bg-red-100 rounded-lg py-5 px-6 mb-8 text-base text-red-700"
+              role="alert"
+            >
+              {error}
+            </div>
+          ) : (
+            ""
+          )}
           <FormFields />
         </div>
       </form>

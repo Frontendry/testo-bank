@@ -26,7 +26,7 @@ connectDB();
 let whitelist = [
   "http://localhost:5000",
   "http://localhost:3000",
-  "https://prospa-test.herokuapp.com",
+  "https://testo-bank.herokuapp.com",
 ];
 
 let corsOptions = {
@@ -34,9 +34,7 @@ let corsOptions = {
   origin: function (origin, callback) {
     callback(null, true);
 
-    /*
-    
-    if (whitelist.indexOf(origin) !== -1) {
+    /*  if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -51,15 +49,7 @@ app.use(express.json());
 // Users endpoint for posting users data
 app.use("/api/users", cors(corsOptions), userRoutes);
 
-// Make errors easily readable from db etc in a structured format
-/* app.use(notFound);
-app.use(errorHandler); */
-
 // Deployment
-/* const __dirname = path.resolve(); */
-
-/* __dirname = path.resolve(); */
-
 if (process.env.NODE_ENV === "production") {
   app.use(
     express.static(path.join(__dirname, "../frontend/build/")),
@@ -74,6 +64,10 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running..");
   });
 }
+
+// Make errors easily readable from db etc in a structured format
+app.use(notFound);
+app.use(errorHandler);
 
 // Port Configuration
 const PORT = process.env.PORT || 5000;
