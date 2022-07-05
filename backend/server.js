@@ -54,7 +54,7 @@ app.use(errorHandler); */
 // Deployment
 /* const __dirname = path.resolve(); */
 
-__dirname = path.resolve();
+/* __dirname = path.resolve(); */
 
 if (process.env.NODE_ENV === "production") {
   app.use(
